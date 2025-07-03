@@ -37,8 +37,12 @@ mongoose.connect(MONGO_URI)
     process.exit(1);
   });
 
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://rassen-kw.vercel.app'
+];
 app.use(cors({
-  origin: ['https://https://rassen-kw.vercel.app/'], // replace with your actual Vercel URL
+  origin: allowedOrigins,
   credentials: true
 }));
 app.use(express.json());
