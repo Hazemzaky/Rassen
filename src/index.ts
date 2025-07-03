@@ -37,7 +37,10 @@ mongoose.connect(MONGO_URI)
     process.exit(1);
   });
 
-app.use(cors());
+app.use(cors({
+  origin: ['https://rassen-kappa.vercel.app/'], // replace with your actual Vercel URL
+  credentials: true
+}));
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 
