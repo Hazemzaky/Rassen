@@ -38,7 +38,7 @@ mongoose.connect(MONGO_URI)
   });
 
 app.use(cors({
-  origin: ['https://rassen-kappa.vercel.app/'], // replace with your actual Vercel URL
+  origin: ['https://https://rassen-kw.vercel.app/'], // replace with your actual Vercel URL
   credentials: true
 }));
 app.use(express.json());
