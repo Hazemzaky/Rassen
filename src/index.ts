@@ -22,6 +22,7 @@ import employeeRoutes from './routes/employeeRoutes';
 import payrollRoutes from './routes/payrollRoutes';
 import reimbursementRoutes from './routes/reimbursementRoutes';
 import leaveRoutes from './routes/leaveRoutes';
+import { authenticate } from './middleware/auth';
 
 dotenv.config();
 
@@ -73,11 +74,11 @@ app.use('/api/reimbursements', reimbursementRoutes);
 app.use('/api/leave', leaveRoutes);
 
 // Dashboard routes
-app.get('/api/dashboard/summary', authenticateToken, async (req, res) => {
+app.get('/api/dashboard/summary', authenticate, async (req, res) => {
   // Dashboard summary logic
 });
 
-app.get('/api/dashboard/kpis', authenticateToken, async (req, res) => {
+app.get('/api/dashboard/kpis', authenticate, async (req, res) => {
   // Dashboard KPIs logic
 });
 
