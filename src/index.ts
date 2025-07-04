@@ -73,15 +73,6 @@ app.use('/api/payroll', payrollRoutes);
 app.use('/api/reimbursements', reimbursementRoutes);
 app.use('/api/leave', leaveRoutes);
 
-// Dashboard routes
-app.get('/api/dashboard/summary', authenticate, async (req, res) => {
-  // Dashboard summary logic
-});
-
-app.get('/api/dashboard/kpis', authenticate, async (req, res) => {
-  // Dashboard KPIs logic
-});
-
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-}); 
+});
