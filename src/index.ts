@@ -37,12 +37,12 @@ mongoose.connect(MONGO_URI)
     process.exit(1);
   });
 
-const allowedOrigins = [
-  'http://localhost:3000',
-  'https://rassen-kw.vercel.app'
-];
 app.use(cors({
-  origin: allowedOrigins,
+  origin: [
+    'https://hazemzaky.github.io',
+    'https://hazemzaky.github.io/Hazemzaky.github.io',
+    'http://localhost:3000'
+  ],
   credentials: true
 }));
 app.use(express.json());
