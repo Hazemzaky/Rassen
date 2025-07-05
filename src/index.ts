@@ -53,6 +53,29 @@ app.get('/', (req: Request, res: Response) => {
   res.send('Financial Management API is running');
 });
 
+// Health check endpoint
+app.get('/health', (req: Request, res: Response) => {
+  res.json({ 
+    status: 'OK', 
+    message: 'API is running',
+    timestamp: new Date().toISOString(),
+    routes: [
+      '/api/auth',
+      '/api/expenses',
+      '/api/dashboard',
+      '/api/budgets',
+      '/api/accounts',
+      '/api/projects',
+      '/api/employees',
+      '/api/assets',
+      '/api/inventory',
+      '/api/payroll',
+      '/api/leave',
+      '/api/reimbursements'
+    ]
+  });
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/expenses', expenseRoutes);
 app.use('/api/invoices', invoiceRoutes);

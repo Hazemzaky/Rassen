@@ -83,6 +83,28 @@ app.use('/uploads', express_1.default.static('uploads'));
 app.get('/', (req, res) => {
     res.send('Financial Management API is running');
 });
+// Health check endpoint
+app.get('/health', (req, res) => {
+    res.json({
+        status: 'OK',
+        message: 'API is running',
+        timestamp: new Date().toISOString(),
+        routes: [
+            '/api/auth',
+            '/api/expenses',
+            '/api/dashboard',
+            '/api/budgets',
+            '/api/accounts',
+            '/api/projects',
+            '/api/employees',
+            '/api/assets',
+            '/api/inventory',
+            '/api/payroll',
+            '/api/leave',
+            '/api/reimbursements'
+        ]
+    });
+});
 app.use('/api/auth', authRoutes_1.default);
 app.use('/api/expenses', expenseRoutes_1.default);
 app.use('/api/invoices', invoiceRoutes_1.default);
