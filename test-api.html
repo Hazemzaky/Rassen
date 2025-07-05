@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+</head>
+<body>
+    <h1>API Endpoint Test</h1>
+    <div id="results"></div>
+    
+    <script>
+        const API_BASE = 'http://localhost:5000';
+        const endpoints = [
+            '/',
+            '/api/auth/login',
+            '/api/dashboard/summary',
+            '/api/expenses',
+            '/api/accounts',
+            '/api/budgets',
+            '/api/projects',
+            '/api/employees',
+            '/api/assets',
+            '/api/inventory',
+            '/api/payroll',
+            '/api/leave',
+            '/api/reimbursements'
+        ];
+        
+        async function testEndpoint(endpoint) {
+            try {
+                const response = await fetch(`${API_BASE}${endpoint}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const status = response.status;
+                const text = await response.text();
+                
+                return {
+                    endpoint,
+                    status,
+                    success: status < 400,
+                    response: text.substring(0, 100) + (text.length > 100 ? '...' : '')
+                };
+            } catch (error) {
+                return {
+                    endpoint,
+                    status: 'ERROR',
+                    success: false,
+                    response: error.message
+                };
+            }
+        }
+        
+        async function runTests() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<p>Testing endpoints...</p>';
+            
+            for (const endpoint of endpoints) {
+                const result = await testEndpoint(endpoint);
+                const color = result.success ? 'green' : 'red';
+                resultsDiv.innerHTML += `
+                    <div style="margin: 10px 0; padding: 10px; border: 1px solid ${color};">
+                        <strong>${endpoint}</strong> - Status: ${result.status}<br>
+                        Response: ${result.response}
+                    </div>
+                `;
+            }
+        }
+        
+        runTests();
+    </script>
+</body>
+</html> 

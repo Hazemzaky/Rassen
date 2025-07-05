@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const budgetController_1 = require("../controllers/budgetController");
+const router = (0, express_1.Router)();
+router.post('/', budgetController_1.createBudget);
+router.get('/', budgetController_1.getBudgets);
+router.put('/:id', budgetController_1.updateBudget);
+router.get('/:id/variance', budgetController_1.getVariance);
+router.post('/:id/forecast', budgetController_1.updateForecast);
+router.get('/scenario-modeling', budgetController_1.scenarioModeling);
+router.post('/:id/recalculate-actual', budgetController_1.recalculateActual);
+exports.default = router;

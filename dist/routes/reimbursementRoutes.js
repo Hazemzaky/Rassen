@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const auth_1 = require("../middleware/auth");
+const reimbursementController_1 = require("../controllers/reimbursementController");
+const router = (0, express_1.Router)();
+router.post('/', auth_1.authenticate, reimbursementController_1.createReimbursement);
+router.get('/', auth_1.authenticate, reimbursementController_1.getReimbursements);
+router.get('/:id', auth_1.authenticate, reimbursementController_1.getReimbursement);
+router.put('/:id', auth_1.authenticate, reimbursementController_1.updateReimbursement);
+router.post('/:id/approve', auth_1.authenticate, reimbursementController_1.approveReimbursement);
+router.post('/:id/reject', auth_1.authenticate, reimbursementController_1.rejectReimbursement);
+exports.default = router;

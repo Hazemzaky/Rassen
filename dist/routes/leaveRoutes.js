@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const auth_1 = require("../middleware/auth");
+const leaveController_1 = require("../controllers/leaveController");
+const router = (0, express_1.Router)();
+router.post('/', auth_1.authenticate, leaveController_1.createLeave);
+router.get('/', auth_1.authenticate, leaveController_1.getLeaves);
+router.get('/:id', auth_1.authenticate, leaveController_1.getLeave);
+router.put('/:id', auth_1.authenticate, leaveController_1.updateLeave);
+router.post('/:id/approve', auth_1.authenticate, leaveController_1.approveLeave);
+router.post('/:id/reject', auth_1.authenticate, leaveController_1.rejectLeave);
+exports.default = router;
